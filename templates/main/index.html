@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+
+<div style="margin-top: 50px;" class="ui container">
+    <h1 class="ui center aligned header">Mening vazifa menijirim</h1>
+    <h3 class="test_style">Vaqtingizni boshqaring!</h3>
+    <form class="ui form" action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label>Yangi vazifa</label>
+            <input type="text" name="title" placeholder="Vazifa nomini kiriting"><br>
+            <input type="text" name="info" placeholder="Vazifa ma'lumotlarini kiriting"><br>
+            <input type="datetime-local" name="yakunlaniwi" placeholder="Vazifaning tugash sanasini kiriting"><br>
+        </div>
+        <button class="ui teal basic button" type="submit">Qo'shish</button>
+    </form>
+
+{% for todo in todo_list %}
+<div class="ui segment">
+    <p class="ui big header">№{{ forloop.counter }} {{ todo.title }}</p>
+    <p>Info: {{ todo.info }}</p>
+    <p>Qushilgani: <b>{{ todo.bowlaniwi }}</b></p>
+<p>Yakunlanishi: {{ todo.yakunlaniwi }}</p> <br>
+    {% if todo.is_complete == False %}
+    <span class="ui gray label">Bajarilmagan</span>
+    <a class="ui primary basic button" href="{% url 'update' todo_id=todo.id %}">Bajarildi</a>
+    {% else %}
+    <span class="ui green label">Bajarilgan</span>
+    <a class="ui blue button" href="{% url 'update' todo_id=todo.id %}">Yopish</a>
+    {% endif %}
+    <a class="ui negative basic button" href="{% url 'delete' todo_id=todo.id %}">Uchirish</a>
+    <a class="ui calendarnav basic button" href="{% url 'edit' todo.id %}">Uzgartirish</a>
+</div>
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+
+
+

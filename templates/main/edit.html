@@ -1,0 +1,55 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block content %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Uzgartirish</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Saytga oʻtish</a></li>
+                        <li class="breadcrumb-item active">Uzgartirish</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Vazifa nomi</label>
+                                    <input class="form-control" type="text" {{ form.title }}
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Vazifa haqida malumot</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"{{ form.info }}</textarea>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vazifa yakunlanishi sanasi</label>
+
+                                    <input class="form-control"  type="datetime-local"{{ form.yakunlaniwi }}
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Saqlash</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
