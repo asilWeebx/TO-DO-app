@@ -11,7 +11,7 @@ class ToDo(models.Model):
     is_complete = models.BooleanField('Yakunlandi', default=False)
     info = models.TextField()
     bowlaniwi = models.DateTimeField(auto_now_add=True)
-    yakunlaniwi = models.DateTimeField()
+    yakunlaniwi = models.DateField(auto_now=True)
     class Meta:
         verbose_name = 'Topshiriq'
         verbose_name_plural = 'Topshiriq'
